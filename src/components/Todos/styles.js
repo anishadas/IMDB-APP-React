@@ -1,7 +1,7 @@
-import { Paper, styled, Box, TextField, IconButton, createTheme, List, ListItemText } from "@mui/material";
+import { Paper, styled, TextField, IconButton, createTheme, List, ListItemText } from "@mui/material";
 const theme = createTheme();
 export const MyPaper = styled(Paper)({
-    width: "450px",
+    marginTop:"30px",
     position: "absolute",
     left: "50%",
     top: "50%",
@@ -13,10 +13,7 @@ export const MyPaper2 = styled(Paper)({
     position: "relative",
 })
 
-export const MyBox = styled(Box)({
-    width: "400px",
-    position:"relative"
-})
+
 
 export const MyTextField = styled(TextField)({
     width: "100%",

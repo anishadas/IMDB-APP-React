@@ -1,6 +1,6 @@
 import React from 'react'
-import { MyBox, MyTextField, MyPaper } from './styles';
-import { Button } from '@mui/material';
+import {  MyTextField, MyPaper } from './styles';
+import { Button,Box } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
 function Contact() {
@@ -13,7 +13,10 @@ function Contact() {
 
     <MyPaper elevation={3}>
       <h1 style={{textAlign:"center"}}>Feedback / Queries</h1>
-      <MyBox p={3} >
+      <Box p={3} sx={{
+        width: 280,
+        height: 300,
+      }}>
         <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: "column" }}>
           <MyTextField
             id="name"
@@ -55,7 +58,7 @@ function Contact() {
             Submit
           </Button>
         </form>
-      </MyBox>
+      </Box>
     </MyPaper>
   )
 }

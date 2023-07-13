@@ -1,5 +1,5 @@
-import { Typography, ListItem, IconButton, ListItemText, FormControlLabel, Checkbox } from '@mui/material'
-import { MyBox, MyPaper, MyPaper2, MyTextField, MyIconButton, MyList, MyListItemText } from './styles';
+import { Typography, ListItem, IconButton, ListItemText, FormControlLabel, Checkbox ,Box} from '@mui/material'
+import {  MyPaper, MyPaper2, MyTextField, MyIconButton, MyList, MyListItemText } from './styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 
@@ -12,14 +12,14 @@ const Todos = () => {
     const [todos, setTodos] = useState(LSTodo);
     const [checked, setChecked] = React.useState(false);
 
-    const handleCheck = (e,id) => {
+    const handleCheck = (e, id) => {
         // console.log(e.target.checked,id)
 
         todos?.forEach(todo => {
             if (todo.id === id) {
                 todo.done = !todo.done;
             }
-           
+
         })
         setTodos(todos);
         localStorage.setItem("TODOS", JSON.stringify(todos))
@@ -41,7 +41,11 @@ const Todos = () => {
     }
     return (
         <MyPaper elevation={3}>
-            <MyBox p={3} sx={{ maxWidth: 500, textAlign: "center" }}>
+            <Box p={3} sx={{
+                width: 300,
+                height: 300,
+                textAlign:"center"
+            }}>
                 <Typography variant="h3" gutterBottom textAlign="center">
                     MY TODOS
                 </Typography>
@@ -65,21 +69,21 @@ const Todos = () => {
                 <MyList>
                     {
                         todos?.map((todo, index) => (
-                            
+
                             <ListItem key={index}>
 
                                 {
                                     todo.done ? (
-                                         
+
                                         <>
                                             <FormControlLabel
-                                                control={<Checkbox checked={checked} onChange={(e) => handleCheck(e,todo.id)} />}
+                                                control={<Checkbox checked={checked} onChange={(e) => handleCheck(e, todo.id)} />}
                                             />
                                             <MyListItemText>{todo.text}</MyListItemText>
                                         </>) : (
                                         <>
                                             <FormControlLabel
-                                                control={<Checkbox  onChange={(e) => handleCheck(e,todo.id)} />}
+                                                control={<Checkbox onChange={(e) => handleCheck(e, todo.id)} />}
                                             />
                                             <ListItemText ListItemText > {todo.text}</ListItemText>
                                         </>)
@@ -94,7 +98,7 @@ const Todos = () => {
 
 
                 </MyList>
-            </MyBox>
+            </Box>
         </MyPaper>
     )
 }
