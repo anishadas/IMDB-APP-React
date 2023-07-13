@@ -1,24 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './components/Home/Home';
+import About from './components/About/About';
+import Contact from './components/Contact/Contact';
+import Navbar from './components/Navbar/Navbar';
+import { ThemeProvider,createTheme } from '@mui/material';
+import { useState } from "react";
+import Cart from './components/Cart/Cart';
+import Todos from './components/Todos/Todos';
 function App() {
+  const [mode, setMode] = useState("light");
+  const darkTheme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      {/* <Navbar /> */}
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/' exact element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/todos' element={<Todos/>} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
