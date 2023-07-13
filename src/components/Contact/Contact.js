@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { MyBox, MyTextField, MyPaper } from './styles';
 import { Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
@@ -30,7 +30,7 @@ function Contact() {
             type="email"
             {...register("email", {
               required: true,
-              pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+              pattern: /[a - zA - Z0 - 9] +\.[a-zA-Z0-9]+@gmail\.com/
             })}
           />
           {errors.email && <p style={{ color: "red" }}>Please check the email</p>}

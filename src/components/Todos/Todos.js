@@ -1,4 +1,4 @@
-import { Typography, List, ListItem, IconButton, ListItemButton, ListItemText, FormControlLabel, Checkbox } from '@mui/material'
+import { Typography, ListItem, IconButton, ListItemText, FormControlLabel, Checkbox } from '@mui/material'
 import { MyBox, MyPaper, MyPaper2, MyTextField, MyIconButton, MyList, MyListItemText } from './styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -15,11 +15,11 @@ const Todos = () => {
     const handleCheck = (e,id) => {
         // console.log(e.target.checked,id)
 
-        todos?.map(todo => {
+        todos?.forEach(todo => {
             if (todo.id === id) {
                 todo.done = !todo.done;
-                return;
             }
+           
         })
         setTodos(todos);
         localStorage.setItem("TODOS", JSON.stringify(todos))

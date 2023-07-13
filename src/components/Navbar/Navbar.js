@@ -1,6 +1,6 @@
-import { Notifications, Pets } from "@mui/icons-material";
+
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+
 
 import { Link } from "react-router-dom";
 import {
@@ -28,25 +28,21 @@ const pages = [
     { menu: "Todos", link: "/todos" }
 ];
 const Navbar = () => {
-    const { open, setOpen, cart, search, setSearch } = useContext(MyContext);
+    const { setOpen, cart, setSearch } = useContext(MyContext);
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
+
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
+
 
 
     return (

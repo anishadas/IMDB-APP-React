@@ -13,7 +13,7 @@ export const ContextProvider = ({ children }) => {
     const [search, setSearch] = useState("dil");
 
     function getMovies(search) {
-        if (search == "") {
+        if (search === "") {
             setSearch("dil")
         }
         axios.get(`${URL}s=${search}`)

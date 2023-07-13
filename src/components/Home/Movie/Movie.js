@@ -5,12 +5,10 @@ import {
     Avatar,
     Card,
     CardActions,
-    CardContent,
     CardHeader,
     CardMedia,
     Checkbox,
     IconButton,
-    Typography,
     styled,
     Button,
 } from "@mui/material";

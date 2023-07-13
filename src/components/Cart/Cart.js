@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import MyContext from '../../Context/MyContext'
-import { styled,Card, CardHeader, Avatar, IconButton, CardContent, CardActions, Checkbox, Button, CardMedia ,Typography} from '@mui/material';
+import { styled,Card, CardHeader, Avatar, IconButton, CardActions, Checkbox, Button, CardMedia } from '@mui/material';
 import './styles.css';
 import { Favorite, FavoriteBorder, MoreVert, Share } from "@mui/icons-material";
 
@@ -12,7 +12,6 @@ const MyButton = styled(Button)({
     backgroundColor: "yellow",
     padding: "2px 8px"
 })
-
 
 const Cart = () => {
 
