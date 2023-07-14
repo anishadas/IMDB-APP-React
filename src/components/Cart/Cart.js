@@ -3,7 +3,7 @@ import MyContext from '../../Context/MyContext'
 import { styled, Card, CardHeader, Avatar, IconButton, CardActions, Checkbox, Button, CardMedia, ButtonGroup } from '@mui/material';
 import './styles.css';
 import { Favorite, FavoriteBorder, MoreVert, Share } from "@mui/icons-material";
-
+import { useNavigate } from 'react-router';
 
 const MyCardMedia = styled(CardMedia)({
     objectFit: "contain"
@@ -16,6 +16,8 @@ const Cart = () => {
     const { cart, handleDecrease, handleIncrease } = useContext(MyContext);
 
     let total = cart.map(movie => movie.qty).reduce((sum, current) => sum + current, 0);
+
+    const navigate = useNavigate();
 
     return (
         <>
@@ -56,9 +58,15 @@ const Cart = () => {
                                         <Share />
                                     </IconButton>
                                     <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                                        <Button onClick={() => handleIncrease(singleMovie.imdbID)}>+</Button>
+                                        <Button onClick={() => {
+                                            navigate('/cart');
+                                            handleIncrease(singleMovie.imdbID)
+                                        }}>+</Button>
                                         <Button>{singleMovie.qty}</Button>
-                                        <Button onClick={() => handleDecrease(singleMovie.imdbID)}>-</Button>
+                                        <Button onClick={() => {
+                                            navigate('/cart');
+                                            handleDecrease(singleMovie.imdbID)
+                                        }}>-</Button>
                                     </ButtonGroup>
                                 </CardActions>
                             </Card>
