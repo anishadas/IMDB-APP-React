@@ -57,7 +57,6 @@ export const ContextProvider = ({ children }) => {
         }
 
         localStorage.setItem("CART", JSON.stringify(cart));
-        window.location.reload(true);
     }
 
     const handleIncrease = (id) => {
@@ -70,7 +69,6 @@ export const ContextProvider = ({ children }) => {
         })
 
         setCart(cart);
-        window.location.reload(true);
         // console.log(cart)
         localStorage.setItem("CART", JSON.stringify(cart));
 
