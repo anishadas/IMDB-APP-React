@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import MyContext from '../../Context/MyContext'
 import { styled, Card, CardHeader, Avatar, IconButton, CardActions, Checkbox, Button, CardMedia, ButtonGroup } from '@mui/material';
-import './styles.css';
 import { Favorite, FavoriteBorder, MoreVert, Share } from "@mui/icons-material";
 import { useNavigate } from 'react-router';
 
@@ -21,12 +20,15 @@ const Cart = () => {
 
     return (
         <>
-            <h3 className='total'>Total Qty: {total}</h3>
-            <ul>
+            {/* total qty */}
+            <h3 className='cart-total'>Total Qty: {total}</h3>
+            <ul className='cart'>
                 {
+                    // mapping over each cart item
                     cart?.map(singleMovie => (
                         <li>
                             <Card sx={{ margin: 5, maxWidth: 300, height: 450 }}>
+                                {/* for the movie title */}
                                 <CardHeader
                                     avatar={
                                         <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
@@ -41,12 +43,14 @@ const Cart = () => {
                                     title={singleMovie.Title}
                                     subheader={singleMovie.Year}
                                 />
+                                {/*  for the movie poster */}
                                 <MyCardMedia
                                     component="img"
                                     height="300"
                                     image={singleMovie.Poster}
-                                    alt="Paella dish"
+                                    alt="poster"
                                 />
+                                {/* other functionalities in a movie card */}
                                 <CardActions disableSpacing>
                                     <IconButton aria-label="add to favorites">
                                         <Checkbox

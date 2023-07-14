@@ -6,15 +6,21 @@ import AddIcon from '@mui/icons-material/Add';
 import React, { useEffect, useState } from 'react'
 
 
-
+// getting todos from Local storage
 const LSTodo = JSON.parse(localStorage.getItem("TODOS")) || [];
 
 const Todos = () => {
+
+    // for storing todos array
     const [todos, setTodos] = useState(LSTodo);
+
+    // for storing a todo
     const [todo, setTodo] = useState("");
+
+    // finding number of tasks completed
     let completedTask = todos?.filter(todo => todo.done === true).length;
 
-
+    // on submiting a todo
     const handleSubmitTodo = (e) => {
         e.preventDefault();
         const newTodo = {
@@ -27,12 +33,13 @@ const Todos = () => {
     }
 
 
-
+    // on deleting a todo
     const handleDelete = (id) => {
         const updatedTodos = [...todos].filter(todo => todo.id !== id);
         setTodos(updatedTodos);
     }
 
+    // on toggling- completed or not
     const handleToggle = (id) => {
         const updatedTodo = [...todos].map(todo => {
             if (todo.id === id) {
@@ -44,6 +51,7 @@ const Todos = () => {
         setTodos(updatedTodo);
     }
 
+    // setting in local storage
     useEffect(() => {
         localStorage.setItem("TODOS", JSON.stringify(todos))
     }, [todos]);
@@ -52,12 +60,12 @@ const Todos = () => {
         <MyPaper elevation={3}>
             <Box p={1} sx={{
                 width: 380,
-                // height: 500,
                 textAlign: "center"
             }}>
                 <Typography variant="h3" gutterBottom textAlign="center">
                     MY TODO List
                 </Typography>
+                {/* input field for todo */}
                 <MyPaper2 elevation={1}>
                     <MyTextField
                         variant="outlined"
@@ -68,10 +76,13 @@ const Todos = () => {
                         value={todo}
                         onChange={(e) => setTodo(e.target.value)}
                     />
+                    {/* submit button */}
                     <MyIconButton type="submit" aria-label="search" onClick={handleSubmitTodo}>
                         <AddIcon style={{ fill: "blue" }} />
                     </MyIconButton>
                 </MyPaper2>
+
+                {/* task status */}
                 <Box sx={{
                     paddingTop: "5px",
                     display: "flex",
@@ -85,17 +96,18 @@ const Todos = () => {
                     </Typography>
                 </Box>
 
+                {/* todo list */}
                 <MyList>
                     {
                         todos?.map((todo, index) => (
-                            <ListItem key={index} style={{justifyContent:"space-around"}}>
+                            <ListItem key={index} style={{ justifyContent: "space-around" }}>
                                 <input type='checkbox' onChange={() => handleToggle(todo.id)} checked={todo.done} className='completed' />
-                                <p className={todo.done?"todo":"pdRight"}>{todo.text}</p>
+                                <p className={todo.done ? "todo" : "pdRight"}>{todo.text}</p>
                                 <p className={todo.done ? "visible" : "invisible"}>
                                     <CheckCircleIcon />
                                     completed
                                 </p>
-                                <Button variant="contained" color="primary"  onClick={() => handleDelete(todo.id)}>Delete</Button>
+                                <Button variant="contained" color="primary" onClick={() => handleDelete(todo.id)}>Delete</Button>
                             </ListItem>
                         ))
                     }

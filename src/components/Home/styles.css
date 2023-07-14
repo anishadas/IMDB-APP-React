@@ -1,7 +1,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Acme&family=Chela+One&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
 
-ul {
+.home {
     padding: 0;
     /* margin: 50px 0 0 0; */
     display: flex;

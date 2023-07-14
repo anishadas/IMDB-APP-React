@@ -13,6 +13,7 @@ import {
     Button,
 } from "@mui/material";
 
+// movie custom stylings
 const MyCardMedia = styled(CardMedia)({
     objectFit: "contain"
 })
@@ -28,11 +29,12 @@ const MyButton = styled(Button)({
 
 const Movie = ({ singleMovie }) => {
     const { handleAddToCart, cart, handleRemoveCart } = useContext(MyContext);
+    // check if movie is in cart or not
     let isInCart = cart.findIndex(item => item.imdbID === singleMovie.imdbID);
-    
-    console.log(isInCart)
+
     return (
         <Card sx={{ margin: 5, width: 300, height: 450 }}>
+            {/* movie title */}
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
@@ -47,13 +49,14 @@ const Movie = ({ singleMovie }) => {
                 title={singleMovie.Title}
                 subheader={singleMovie.Year}
             />
+            {/* poster */}
             <MyCardMedia
                 component="img"
                 height="300"
                 image={singleMovie.Poster}
                 alt="Paella dish"
             />
-
+            {/* functionalities */}
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                     <Checkbox
@@ -65,7 +68,7 @@ const Movie = ({ singleMovie }) => {
                     <Share />
                 </IconButton>
                 {
-                    isInCart!==-1?
+                    isInCart !== -1 ?
                         (
                             <MyButton size="small" color="primary" onClick={() => handleRemoveCart(singleMovie.imdbID)}>
                                 Remove from cart

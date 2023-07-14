@@ -20,6 +20,7 @@ import React, { useContext } from "react";
 import MyContext from "../../Context/MyContext";
 import { StyledToolbar, Search, Icons, UserBox } from "./styles";
 
+// for creating tabs in navbar
 const pages = [
     { menu: "Home", link: "/" },
     { menu: "Cart", link: "/cart" },
@@ -27,24 +28,14 @@ const pages = [
     { menu: "Contact", link: "/contact" },
     { menu: "Todos", link: "/todos" }
 ];
+
 const Navbar = () => {
-    const { setOpen, cart, setSearch } = useContext(MyContext);
-
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const { cart, setSearch,setOpen,anchorElNav,handleCloseNavMenu,handleOpenNavMenu } = useContext(MyContext);
 
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
-
-
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
-
-
+    // total cart items
     let total = cart.map(movie => movie.qty).reduce((sum, current) => sum + current, 0);
-   
+
     return (
         <AppBar position="sticky">
             <StyledToolbar>
@@ -56,11 +47,6 @@ const Navbar = () => {
                 {/* for large screen */}
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }} style={{}}>
                     {pages.map((page, index) => (
-                        // <Button
-                        //     key={index}
-                        //     onClick={handleCloseNavMenu}
-                        //     sx={{ my: 2, color: 'white', display: 'block', }} style={{border:"2px solid red" }}
-                        // >
                         <Link to={page.link} style={{ textDecoration: "none", color: "white" }} key={index}>
                             <Button
                                 key={index}
@@ -115,6 +101,7 @@ const Navbar = () => {
                 </Box>
                 {/* **************************************end******************************************** */}
 
+                {/* search input */}
                 <Search style={{ width: "30%" }}>
                     <InputBase placeholder="type atleast 3 letters to search..." onChange={(e) => setSearch(e.target.value)} style={{ width: "100%" }} />
                 </Search>
@@ -132,6 +119,7 @@ const Navbar = () => {
                         src="https://m.media-amazon.com/images/I/41jLBhDISxL._AC_UF1000,1000_QL80_.jpg"
                     />
                 </Icons>
+                {/* for small screen - only avatar will appear */}
                 <UserBox onClick={(e) => setOpen(true)}>
                     <Avatar
                         sx={{ width: 32, height: 32 }}

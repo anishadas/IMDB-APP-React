@@ -3,15 +3,27 @@ import axios from "axios";
 
 const URL = "https://www.omdbapi.com/?apikey=c997ccc2&";
 const MyContext = createContext(null);
+// getting cart from local storage
 const LSCart = JSON.parse(localStorage.getItem("CART")) || [];
 
 export const ContextProvider = ({ children }) => {
-    // for menus when screen size reduces
-    const [open, setOpen] = useState(false);
     const [movies, setMovies] = useState([]);
     const [cart, setCart] = useState(LSCart);
     const [search, setSearch] = useState("dil");
 
+    // for handling the side navbar on small screens
+    const [open, setOpen] = useState(false);
+    const [anchorElNav, setAnchorElNav] = useState(null);
+
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
+// for fetching themovies from db
     function getMovies(search) {
         if (search === "") {
             setSearch("dil")
@@ -22,6 +34,8 @@ export const ContextProvider = ({ children }) => {
                 setMovies(data);
             });
     }
+
+    // cart operations - add
     const handleAddToCart = (id) => {
         const movie = movies.filter(item => item.imdbID === id);
         const cart_movie = {
@@ -34,11 +48,13 @@ export const ContextProvider = ({ children }) => {
         ])
     }
 
+    // cart operations - delete
     const handleRemoveCart = (id) => {
         const Mymovies = cart.filter(item => item.imdbID !== id);
         setCart(Mymovies)
     }
 
+    // cart operations - decrease qty
     const handleDecrease = (id) => {
 
         const move_to_update = cart.filter(item => item.imdbID === id);
@@ -59,9 +75,8 @@ export const ContextProvider = ({ children }) => {
         localStorage.setItem("CART", JSON.stringify(cart));
     }
 
+    // cart operations - increase qty
     const handleIncrease = (id) => {
-        // let updated = cart?.filter(item => item.imdbID = id).map(item=>)
-        // console.log(updated)
         cart.forEach(movie => {
             if (movie.imdbID === id) {
                 movie.qty += 1
@@ -69,22 +84,39 @@ export const ContextProvider = ({ children }) => {
         })
 
         setCart(cart);
-        // console.log(cart)
         localStorage.setItem("CART", JSON.stringify(cart));
 
     }
 
+    // cart dependency
     useEffect(() => {
         localStorage.setItem("CART", JSON.stringify(cart));
     }, [cart]);
 
+    // whenever search state changes
     useEffect(() => {
         getMovies(search);
     }, [search]);
 
-  
 
-    const value = { open, setOpen, movies, setMovies, handleAddToCart, cart, setCart, handleRemoveCart, search, setSearch, handleDecrease, handleIncrease };
+    const value = {
+        movies,
+        setMovies,
+        handleAddToCart,
+        cart, setCart,
+        handleRemoveCart,
+        search,
+        setSearch,
+        handleDecrease,
+        handleIncrease,
+        open,
+        setOpen,
+        anchorElNav,
+        setAnchorElNav,
+        handleCloseNavMenu,
+        handleOpenNavMenu
+    };
+    
     return <MyContext.Provider value={value}>{children}</MyContext.Provider>
 };
 

@@ -1,25 +1,10 @@
 import React, { useContext } from 'react'
 import MyContext from '../../Context/MyContext'
 import Movie from './Movie/Movie';
-import './styles.css'
-import { Grid ,styled,Box,Typography,createTheme} from '@mui/material';
+import { Grid ,Box,Typography} from '@mui/material';
 import HomePic from "../../assets/SL-121019-25870-14.jpg"
+import { MyGrid,MyPaper } from './styles';
 
-const theme = createTheme();
-
-const MyGrid = styled(Grid)({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    marginLeft: 0,
-    width: "100%",
-    marginTop:"10px",
-    // border:"2px solid red"
-})
-const MyPaper = styled(Box)({
-    
-    padding:theme.spacing(2)
-})
 
 
 function Home() {
@@ -31,16 +16,16 @@ function Home() {
                 <MyGrid container spacing={2}>
                     <MyGrid item xs={6}>
                         <Box
-                            component="img"
+                            component="div"
                             sx={{
                                 borderRadius: "30%",
-                                // height: 350,
-                                width: "70%",
+                                height: 300,
+                                // width: "70%",
                                 boxShadow: "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
                             }}
-                            alt="The house from the offer."
-                            src={HomePic}
-                        />
+                        >
+                            <img src={HomePic} className='image' alt="homePoster"/>
+                        </Box>
                     </MyGrid>
                     <Grid item xs={6}>
                         <h1 className='typo1'>
@@ -61,7 +46,7 @@ function Home() {
             
             
             <h1 className='typo3'>Movie List</h1>
-            <ul>
+            <ul className='home'>
                 {
                     movies?.map(singleMovie => <li><Movie singleMovie={singleMovie}/></li>)
                 }

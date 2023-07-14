@@ -4,13 +4,15 @@ import { Button,Box } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
 function Contact() {
-  const { register, handleSubmit, formState: { errors } } = useForm()
+//  useForm hook for form validation
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  
+// onsubmit- check data in console
   const onSubmit = (data) => {
     console.log(data);
   }
+
   return (
-
-
     <MyPaper elevation={3}>
       <h1 style={{textAlign:"center"}}>Feedback / Queries</h1>
       <Box p={3} sx={{
