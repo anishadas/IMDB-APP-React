@@ -34,8 +34,5 @@ export const MyList = styled(List)({
     justifyContent: "space-around",
 })
 
-export const MyListItemText = styled(ListItemText)({
-    fontStyle: "italic",
-    textDecoration:"line-through"
-})
+
 

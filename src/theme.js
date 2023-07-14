@@ -14,3 +14,12 @@ export const theme = createTheme({
         }
     }
 })
+
+export const theme1 = createTheme({
+    typography: {
+        h1: {
+            fontFamily: '"Montserrat", Open Sans',
+            color:"red"
+        }
+    }
+})

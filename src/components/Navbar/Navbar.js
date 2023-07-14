@@ -43,8 +43,8 @@ const Navbar = () => {
     };
 
 
-
-
+    let total = cart.map(movie => movie.qty).reduce((sum, current) => sum + current, 0);
+   
     return (
         <AppBar position="sticky">
             <StyledToolbar>
@@ -120,7 +120,7 @@ const Navbar = () => {
                 </Search>
                 <Icons>
 
-                    <Badge badgeContent={cart?.length} color="error">
+                    <Badge badgeContent={total} color="error">
                         <Link to="/cart">
                             <ShoppingCartRoundedIcon style={{ fill: 'white' }} />
                         </Link>

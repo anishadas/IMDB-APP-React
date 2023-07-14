@@ -19,7 +19,7 @@ const MyCardMedia = styled(CardMedia)({
 
 const MyButton = styled(Button)({
     position: "relative",
-    left: "60px",
+    left: "30px",
     backgroundColor: "yellow",
     padding: "2px 8px"
 })
@@ -27,8 +27,10 @@ const MyButton = styled(Button)({
 
 
 const Movie = ({ singleMovie }) => {
-    const { handleAddToCart } = useContext(MyContext)
-    console.log(singleMovie)
+    const { handleAddToCart, cart, handleRemoveCart } = useContext(MyContext);
+    let isInCart = cart.findIndex(item => item.imdbID === singleMovie.imdbID);
+    
+    console.log(isInCart)
     return (
         <Card sx={{ margin: 5, width: 300, height: 450 }}>
             <CardHeader
@@ -51,7 +53,7 @@ const Movie = ({ singleMovie }) => {
                 image={singleMovie.Poster}
                 alt="Paella dish"
             />
-            
+
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                     <Checkbox
@@ -62,9 +64,19 @@ const Movie = ({ singleMovie }) => {
                 <IconButton aria-label="share">
                     <Share />
                 </IconButton>
-                <MyButton size="small" color="primary" onClick={() => handleAddToCart(singleMovie.imdbID)}>
-                    Add To Cart
-                </MyButton>
+                {
+                    isInCart!==-1?
+                        (
+                            <MyButton size="small" color="primary" onClick={() => handleRemoveCart(singleMovie.imdbID)}>
+                                Remove from cart
+                            </MyButton>
+                        ) : (
+                            <MyButton size="small" color="primary" onClick={() => handleAddToCart(singleMovie.imdbID)}>
+                                Add To Cart
+                            </MyButton>
+                        )
+                }
+
             </CardActions>
         </Card>
     );

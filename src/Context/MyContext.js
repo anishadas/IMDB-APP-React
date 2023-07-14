@@ -24,15 +24,56 @@ export const ContextProvider = ({ children }) => {
     }
     const handleAddToCart = (id) => {
         const movie = movies.filter(item => item.imdbID === id);
+        const cart_movie = {
+            ...movie[0],
+            qty: 1,
+        }
         setCart([
             ...cart,
-            ...movie
+            cart_movie
         ])
     }
 
     const handleRemoveCart = (id) => {
         const Mymovies = cart.filter(item => item.imdbID !== id);
         setCart(Mymovies)
+    }
+
+    const handleDecrease = (id) => {
+
+        const move_to_update = cart.filter(item => item.imdbID === id);
+        if (move_to_update[0].qty > 1) {
+            cart.forEach(movie => {
+                if (movie.imdbID === id) {
+                    movie.qty -= 1
+                }
+            })
+
+            setCart(cart);
+            
+        }
+        else {
+            setCart(cart.filter(item => item.imdbID !== id))
+        }
+
+        localStorage.setItem("CART", JSON.stringify(cart));
+        window.location.reload(true);
+    }
+
+    const handleIncrease = (id) => {
+        // let updated = cart?.filter(item => item.imdbID = id).map(item=>)
+        // console.log(updated)
+        cart.forEach(movie => {
+            if (movie.imdbID === id) {
+                movie.qty += 1
+            }
+        })
+
+        setCart(cart);
+        window.location.reload(true);
+        // console.log(cart)
+        localStorage.setItem("CART", JSON.stringify(cart));
+
     }
 
     useEffect(() => {
@@ -43,8 +84,9 @@ export const ContextProvider = ({ children }) => {
         getMovies(search);
     }, [search]);
 
-    
-    const value = { open, setOpen, movies, setMovies, handleAddToCart, cart, setCart, handleRemoveCart ,search,setSearch};
+  
+
+    const value = { open, setOpen, movies, setMovies, handleAddToCart, cart, setCart, handleRemoveCart, search, setSearch, handleDecrease, handleIncrease };
     return <MyContext.Provider value={value}>{children}</MyContext.Provider>
 };
 
