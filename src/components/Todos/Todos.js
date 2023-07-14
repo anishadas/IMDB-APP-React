@@ -95,7 +95,7 @@ const Todos = () => {
                                     <CheckCircleIcon />
                                     completed
                                 </p>
-                                <Button variant="contained" color="primary" gutterBottom onClick={() => handleDelete(todo.id)}>Delete</Button>
+                                <Button variant="contained" color="primary"  onClick={() => handleDelete(todo.id)}>Delete</Button>
                             </ListItem>
                         ))
                     }

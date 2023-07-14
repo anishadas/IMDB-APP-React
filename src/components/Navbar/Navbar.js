@@ -61,7 +61,7 @@ const Navbar = () => {
                         //     onClick={handleCloseNavMenu}
                         //     sx={{ my: 2, color: 'white', display: 'block', }} style={{border:"2px solid red" }}
                         // >
-                        <Link to={page.link} style={{ textDecoration: "none", color: "white" }}>
+                        <Link to={page.link} style={{ textDecoration: "none", color: "white" }} key={index}>
                             <Button
                                 key={index}
                                 onClick={handleCloseNavMenu}
@@ -103,9 +103,9 @@ const Navbar = () => {
                         }}
                     >
                         {pages.map((page, index) => (
-                            <Link to={page.link} style={{ textDecoration: "none", color: "black" }}>
+                            <Link to={page.link} style={{ textDecoration: "none", color: "black" }} key={index}>
                                 <MenuItem key={index} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">
+                                    <Typography textAlign="center" >
                                         {page.menu}
                                     </Typography>
                                 </MenuItem>
