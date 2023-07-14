@@ -8,7 +8,6 @@ export const MyGrid = styled(Grid)({
     marginLeft: 0,
     width: "100%",
     marginTop: "10px",
-    // border:"2px solid red"
 })
 export const MyPaper = styled(Box)({
 

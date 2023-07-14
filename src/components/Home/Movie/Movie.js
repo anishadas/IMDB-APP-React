@@ -33,7 +33,7 @@ const Movie = ({ singleMovie }) => {
     let isInCart = cart.findIndex(item => item.imdbID === singleMovie.imdbID);
 
     return (
-        <Card sx={{ margin: 5, width: 300, height: 450 }}>
+        <Card sx={{  width: 300, height: 450 }}>
             {/* movie title */}
             <CardHeader
                 avatar={

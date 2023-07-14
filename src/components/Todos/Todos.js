@@ -58,10 +58,7 @@ const Todos = () => {
 
     return (
         <MyPaper elevation={3}>
-            <Box p={1} sx={{
-                width: 380,
-                textAlign: "center"
-            }}>
+            
                 <Typography variant="h3" gutterBottom textAlign="center">
                     MY TODO List
                 </Typography>
@@ -86,7 +83,8 @@ const Todos = () => {
                 <Box sx={{
                     paddingTop: "5px",
                     display: "flex",
-                    justifyContent: "space-between"
+                    justifyContent: "space-between",
+                    width: "100%"
                 }}>
                     <Typography variant="subtitle2" gutterBottom>
                         Total task : {todos?.length}
@@ -100,9 +98,9 @@ const Todos = () => {
                 <MyList>
                     {
                         todos?.map((todo, index) => (
-                            <ListItem key={index} style={{ justifyContent: "space-around" }}>
-                                <input type='checkbox' onChange={() => handleToggle(todo.id)} checked={todo.done} className='completed' />
-                                <p className={todo.done ? "todo" : "pdRight"}>{todo.text}</p>
+                            <ListItem key={index} style={{ justifyContent: "space-between" }}>
+                                <input type='checkbox' onChange={() => handleToggle(todo.id)} checked={todo.done} />
+                                <p className="todo">{todo.text}</p>
                                 <p className={todo.done ? "visible" : "invisible"}>
                                     <CheckCircleIcon />
                                     completed
@@ -112,9 +110,8 @@ const Todos = () => {
                         ))
                     }
 
-
                 </MyList>
-            </Box>
+        
         </MyPaper>
     )
 }

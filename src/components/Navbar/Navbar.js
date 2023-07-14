@@ -37,7 +37,7 @@ const Navbar = () => {
     let total = cart.map(movie => movie.qty).reduce((sum, current) => sum + current, 0);
 
     return (
-        <AppBar position="sticky">
+        <AppBar position="sticky" >
             <StyledToolbar>
                 <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}>
                     My IMDB Cart &nbsp;&nbsp;

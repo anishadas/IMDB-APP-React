@@ -16,7 +16,7 @@ function Contact() {
     <MyPaper elevation={3}>
       <h1 style={{textAlign:"center"}}>Feedback / Queries</h1>
       <Box p={3} sx={{
-        width: 280,
+        width: 250,
         height: 300,
       }}>
         <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: "column" }}>

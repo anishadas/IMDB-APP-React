@@ -29,7 +29,7 @@ function Home() {
                     </MyGrid>
                     <Grid item xs={6}>
                         <h1 className='typo1'>
-                            WELCOME
+                            welcome
                         </h1>
                         <Typography variant="h4" style={{paddingLeft:"10px"}}>
                             to
