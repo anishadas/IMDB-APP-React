@@ -17,7 +17,6 @@ function Contact() {
       <h1 style={{textAlign:"center"}}>Feedback / Queries</h1>
       <Box p={3} sx={{
         width: 250,
-        height: 300,
       }}>
         <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: "column" }}>
           <MyTextField
